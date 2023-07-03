@@ -1,7 +1,8 @@
 import React from 'react';
 import {useContext} from "react";
-import {ApplicationContext} from "../context/applicationContext";
+import {ApplicationContext} from "../../context/applicationContext";
 import axios from "axios";
+import classes from "./SignUp.module.css";
 
 const SignUp = () => {
     const {state, dispatch} = useContext(ApplicationContext)
@@ -17,8 +18,6 @@ const SignUp = () => {
                 // dispatch({type: 'SET_USER_SESSION', payload: response.data});
                 console.log(response.data.userAgent)
             }
-            // console.log('Информация о существующих сеансах:', response.data);
-            // return response.data;
         } catch (error) {
             console.error('Ошибка при получении информации о существующих сеансах:', error);
         }
@@ -31,16 +30,19 @@ const SignUp = () => {
             if (response.status === 201) {
                 dispatch({type: 'SET_USER', payload: response.data.user})
                 dispatch({type: 'SET_USER_SESSION', payload: response.data.session});
-                getExistingSessions()
+                // getExistingSessions()
             }
         } catch (err) {
             console.error('Ошибка при отправке данных:', err);
             dispatch({type: 'SET_ERROR', payload: err.message});
         }
+        finally {
+            dispatch({type:'CLOSE_MODAL'})
+        }
     };
     return (
-        <div>
-            <form onSubmit={userSubmit}>
+        <div >
+            <form className={classes.formContainer} onSubmit={userSubmit}>
                 <label>Email</label>
                 <input
                     type="text"

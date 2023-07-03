@@ -1,0 +1,75 @@
+.appMenu {
+    padding: 10px;
+    background-color: black;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.searchContainer{
+    display: flex;
+}
+.signContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.sign{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 50px;
+}
+.paddingContainer{
+    padding-right: 15px;
+    background-color: transparent;
+    border: none;
+    color: rgb(100, 100, 100);
+    font-size: 22px;
+    align-items: center;
+}
+.paddingContainer:hover{
+    color: white;
+}
+.inputStyles{
+    height: 100%;
+    width: 80%;
+}
+.buttonStyle{
+    background-color: transparent;
+    border: 1px solid transparent;
+    color: rgb(100, 100, 100);
+    font-size: 22px;
+    align-items: flex-start;
+    width: 100%;
+    padding: 10px 0 10px 10px;
+}
+.buttonStyle:hover {
+    border: 1px solid black;
+}
+.buttonStyleActive{
+    background-color: transparent;
+    border: 1px solid dodgerblue;
+    color: rgb(100, 100, 100);
+    font-size: 22px;
+    align-items: flex-start;
+    width: 100%;
+    padding: 10px 0 10px 10px;
+}
+.image {
+    overflow: hidden;
+    background-color: transparent;
+    border: none;
+    color: rgb(100, 100, 100);
+    font-size: 22px;
+    align-items: center;
+}
+
+img {
+    transition: transform 0.25s;
+}
+.image:hover img {
+    transform: scale(1.1);
+}

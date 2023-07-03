@@ -1,0 +1,9 @@
+export const SET_USER = 'SET_USER';
+export const SET_ERROR = 'SET_ERROR';
+export const SET_USER_SESSION = 'SET_USER_SESSION';
+export const SET_SIGN_UP = 'SET_SIGN_UP';
+export const SET_SIGN_IN_MODAL = 'SET_SIGN_IN_MODAL';
+export const OPEN_SIGN_IN_MODAL = 'OPEN_SIGN_IN_MODAL';
+export const SET_SIGN_UP_MODAL = 'SET_SIGN_UP_MODAL';
+export const OPEN_SIGN_UP_MODAL = 'OPEN_SIGN_UP_MODAL';
+export const CLOSE_MODAL = 'CLOSE_MODAL';
