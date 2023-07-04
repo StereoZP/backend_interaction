@@ -4,6 +4,7 @@ import {reducer} from "./store/reducer";
 import initialState from "./store/store";
 import AppMenu from "./components/AppMenu";
 import './App.css';
+import {UserSessions} from "./components/UserSessions";
 
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
         <div>
             <ApplicationContext.Provider value={{state, dispatch}}>
                 <AppMenu/>
+                {state.user ? <UserSessions /> : null}
             </ApplicationContext.Provider>
         </div>
     );

@@ -41,6 +41,25 @@ export function reducer(state, action) {
                 signUpModal: false,
                 signInModal: false,
             }
+        case ACTIONS.SET_USER_AUTH: {
+            const {user, session} = action.payload;
+            return {
+                ...state,
+                user,
+                userSession: session
+            }
+        }
+        case ACTIONS.SET_SESSIONS:{
+            return {
+                ...state,
+                sessions:action.payload
+            }
+        }
+        case ACTIONS.SET_IS_LOADING:
+            return {
+                ...state,
+                isLoading: action.payload
+            }
         default:
             return state;
     }

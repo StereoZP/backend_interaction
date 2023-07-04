@@ -3,18 +3,17 @@ import classes from "../SignUp/SignUp.module.css";
 import {useContext} from "react";
 import {ApplicationContext} from "../../context/applicationContext";
 import axios from "axios";
+import {setUser} from "../../store/actionCreators";
 
 const SignIn = () => {
     const {state, dispatch} = useContext(ApplicationContext)
-
-
 
     const userLogIn = async (e) => {
         e.preventDefault();
         try {
             const response = await axios.post('http://localhost:4000/auth/signin', state.signUp);
             if (response.status === 201) {
-                dispatch({type: 'SET_USER', payload: response.data.user})
+                dispatch(setUser(response.data.user))
                 dispatch({type: 'SET_USER_SESSION', payload: response.data.session});
                 // getExistingSessions()
             }

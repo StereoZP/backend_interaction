@@ -10,6 +10,7 @@ import userImg from "../images/user.png"
 import Modal from "../UI/Modal/Modal";
 import SignUp from "./SignUp/SignUp";
 import SignIn from "./SignIn/SignIn"
+import {setSignUpModal} from "../store/actionCreators";
 
 const AppMenu = () => {
     const {state, dispatch} = useContext(ApplicationContext)
@@ -52,7 +53,7 @@ const AppMenu = () => {
                             {mode ? <img src={nightModeImg} alt="Moon"/> : <img src={dayModeImg} alt="Sun"/>}</button>
                     </div>
                     <Modal className={cl.modalContainer} visible={state.signUpModal}
-                           setVisible={() => dispatch({type: "SET_SIGN_UP_MODAL"})}>
+                           setVisible={() => dispatch(setSignUpModal())}>
                         <SignUp/>
                     </Modal>
                     <Modal className={cl.modalContainer} visible={state.signInModal}

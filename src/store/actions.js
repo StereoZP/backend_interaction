@@ -7,3 +7,6 @@ export const OPEN_SIGN_IN_MODAL = 'OPEN_SIGN_IN_MODAL';
 export const SET_SIGN_UP_MODAL = 'SET_SIGN_UP_MODAL';
 export const OPEN_SIGN_UP_MODAL = 'OPEN_SIGN_UP_MODAL';
 export const CLOSE_MODAL = 'CLOSE_MODAL';
+export const SET_USER_AUTH = 'SET_USER_AUTH';
+export const SET_SESSIONS = "SET_SESSIONS";
+export const SET_IS_LOADING = "SET_IS_LOADING";

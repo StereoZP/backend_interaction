@@ -10,7 +10,8 @@ const initialState = {
     userSession:null,
     signInModal: false,
     signUpModal: false,
-
+    sessions: null,
+    isLoading: false,
 };
 
 export default initialState;
