@@ -1,0 +1,10 @@
+.buttonSignUp{
+    border: none;
+    background-color: transparent;
+    text-decoration: underline;
+}
+.buttonSignUp:hover {
+    color: dodgerblue;
+    cursor: pointer;
+}
+

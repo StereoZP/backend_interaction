@@ -2,9 +2,9 @@ import {useReducer} from "react";
 import {ApplicationContext} from "./context/applicationContext";
 import {reducer} from "./store/reducer";
 import initialState from "./store/store";
-import AppMenu from "./components/AppMenu";
+import AppMenu from "./components/AppMenu/AppMenu";
 import './App.css';
-import {UserSessions} from "./components/UserSessions";
+import {UserSessions} from "./components/UserSession/UserSessions";
 
 
 function App() {

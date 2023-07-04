@@ -10,7 +10,7 @@
 
 .myModalContent {
     padding: 25px;
-    background-color: rgb(37, 38, 38);
+    background-color: white;
     border-radius: 16px;
 }
 
@@ -20,6 +20,7 @@
     align-items: center;
 }
 .modalContainer{
+
     display: flex;
     justify-content: space-between;
     flex-direction: column;

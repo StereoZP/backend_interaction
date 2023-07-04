@@ -1,16 +1,16 @@
 import React from 'react';
 import {useContext, useState, useEffect} from "react";
-import {ApplicationContext} from "../context/applicationContext";
+import {ApplicationContext} from "../../context/applicationContext";
 import classes from "./AppMenu.module.css";
-import cl from "../UI/Modal/Modal.module.css"
-import auctionImg from "../images/auction.png"
-import nightModeImg from "../images/moon.png"
-import dayModeImg from "../images/sun.png"
-import userImg from "../images/user.png"
-import Modal from "../UI/Modal/Modal";
-import SignUp from "./SignUp/SignUp";
-import SignIn from "./SignIn/SignIn"
-import {setSignUpModal} from "../store/actionCreators";
+import cl from "../../UI/Modal/Modal.module.css"
+import auctionImg from "../../images/auction.png"
+import nightModeImg from "../../images/moon.png"
+import dayModeImg from "../../images/sun.png"
+import userImg from "../../images/user.png"
+import Modal from "../../UI/Modal/Modal";
+import SignUp from "../SignUp/SignUp";
+import SignIn from "../SignIn/SignIn"
+import {setSignUpModal} from "../../store/actionCreators";
 
 const AppMenu = () => {
     const {state, dispatch} = useContext(ApplicationContext)
@@ -23,7 +23,7 @@ const AppMenu = () => {
         if (mode) {
             document.body.style.background = 'darkgrey';
         } else {
-            document.body.style.background = 'white';
+            document.body.style.background = 'rgb(238,238,238)';
         }
     }, [mode]);
 

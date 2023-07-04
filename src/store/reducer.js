@@ -35,11 +35,11 @@ export function reducer(state, action) {
                 ...state,
                 signUpModal: true,
             }
-        case ACTIONS.CLOSE_MODAL:
+        case ACTIONS.MODAL_CONTROLLER:
             return {
                 ...state,
-                signUpModal: false,
-                signInModal: false,
+                signUpModal: action.payload.signUpModal,
+                signInModal: action.payload.signInModal,
             }
         case ACTIONS.SET_USER_AUTH: {
             const {user, session} = action.payload;
