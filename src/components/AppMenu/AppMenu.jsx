@@ -10,7 +10,7 @@ import userImg from "../../images/user.png"
 import Modal from "../../UI/Modal/Modal";
 import SignUp from "../SignUp/SignUp";
 import SignIn from "../SignIn/SignIn"
-import {setSignUpModal} from "../../store/actionCreators";
+import {setSignUpModal, setSignInModal} from "../../store/actionCreators";
 
 const AppMenu = () => {
     const {state, dispatch} = useContext(ApplicationContext)
@@ -21,7 +21,7 @@ const AppMenu = () => {
 
     useEffect(() => {
         if (mode) {
-            document.body.style.background = 'darkgrey';
+            document.body.style.background = 'black';
         } else {
             document.body.style.background = 'rgb(238,238,238)';
         }
@@ -57,7 +57,7 @@ const AppMenu = () => {
                         <SignUp/>
                     </Modal>
                     <Modal className={cl.modalContainer} visible={state.signInModal}
-                           setVisible={() => dispatch({type: "SET_SIGN_IN_MODAL"})}>
+                           setVisible={() => dispatch(setSignInModal())}>
                         <SignIn/>
                     </Modal>
                 </div>

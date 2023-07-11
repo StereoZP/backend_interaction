@@ -1,7 +1,11 @@
 import axios from "axios";
 import {useContext, useEffect} from "react";
 import {ApplicationContext} from "../../context/applicationContext";
-import {SET_ERROR, SET_IS_LOADING, SET_SESSIONS} from "../../store/actions";
+import {
+    SET_ERRORS_EXISTING_SESSIONS,
+    SET_IS_LOADING_EXISTING_SESSIONS,
+    SET_SESSIONS
+} from "../../store/actions";
 
 export const UserSessions = (props) => {
     const {state, dispatch} = useContext(ApplicationContext)
@@ -9,8 +13,8 @@ export const UserSessions = (props) => {
     useEffect(() => {
         try {
             async function getExistingSessions() {
-                dispatch({type: SET_IS_LOADING, payload: true})
-                const response = await axios.get('http://localhost:4000/auth/existing-sessions', {
+                dispatch({type: SET_IS_LOADING_EXISTING_SESSIONS, payload: true})
+                const response = await axios.get(`http://localhost:4000/auth/existing-sessions`, {
                     headers: {
                         Authorization: `Bearer ${state.userSession.access}`,
                     },
@@ -21,26 +25,23 @@ export const UserSessions = (props) => {
             }
             getExistingSessions()
         } catch (error) {
-            dispatch({type: SET_ERROR, payload: error.message});
+            dispatch({type: SET_ERRORS_EXISTING_SESSIONS, payload: error.message});
         } finally {
-            dispatch({type: SET_IS_LOADING, payload: false})
+            dispatch({type: SET_IS_LOADING_EXISTING_SESSIONS, payload: false})
         }
     }, [])
 
-    if (state.isLoading) {
+    if (state.isLoadingExistingSessions) {
         return <div>Loading...</div>
     }
-    if (state.sessions && !state.isLoading) {
+    if (state.sessions && !state.isLoadingExistingSessions) {
         return JSON.stringify(state.sessions)
     }
-    if (state.error) {
-        return <div>{state.error.message}</div>
+    if (state.errorsExistingSessions) {
+        return <div>{state.errorsExistingSessions.message}</div>
     }
 
-    //добавить для каждой загрузки свой лоадинг и ерору
-    //вівести инфу о юзере
     //создать форму добавления лота(Formik)
-    // все формі на Formik
 
     return null;
 }

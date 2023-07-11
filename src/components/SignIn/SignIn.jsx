@@ -1,24 +1,24 @@
 import React from 'react';
+import {Field, Form, Formik} from "formik";
 import classes from "../SignUp/SignUp.module.css";
 import cl from "./SignIn.module.css"
 import {useContext} from "react";
 import {ApplicationContext} from "../../context/applicationContext";
 import axios from "axios";
 import {setUser} from "../../store/actionCreators";
-import {Field, Form, Formik} from "formik";
-import {validationSchema} from "../../validation/validadionSchema";
+import {validationSchemaSignIn} from "../../validation/validadionSchema";
 import classNames from "classnames";
 import personImg from "../../images/person.png";
 import passwordImg from "../../images/password.png";
-import {SET_USER_SESSION, SET_ERROR, MODAL_CONTROLLER} from "../../store/actions";
+import {SET_USER_SESSION, SET_ERROR, MODAL_CONTROLLER, SET_IS_LOADING_SIGN_IN} from "../../store/actions";
 
 const SignIn = () => {
     const {state, dispatch} = useContext(ApplicationContext)
 
-    const userLogIn = async (e) => {
-        e.preventDefault();
+    const userSignIn = async (values) => {
         try {
-            const response = await axios.post('http://localhost:4000/auth/signin', state.signUp);
+            dispatch({type: SET_IS_LOADING_SIGN_IN, payload: true})
+            const response = await axios.post(`http://localhost:4000/auth/signin`, {...values});
             if (response.status === 201) {
                 dispatch(setUser(response.data.user))
                 dispatch({type: SET_USER_SESSION, payload: response.data.session});
@@ -28,19 +28,26 @@ const SignIn = () => {
             dispatch({type: SET_ERROR, payload: err.message});
         } finally {
             dispatch({type: MODAL_CONTROLLER, payload: {signUpModal: false, signInModal: false}})
+            dispatch({type: SET_IS_LOADING_SIGN_IN, payload: false})
         }
     };
+    if (state.isLoadingSignIn) {
+        return <div>Loading...</div>
+    }
+    if (state.errorsSignIn) {
+        return <div>{state.errorsSignIn.message}</div>
+    }
 
     return (
         <div>
             <Formik
                 initialValues={{
-                    login: state.signUp.login,
-                    password: state.signUp.password,
+                    login: 'test123',
+                    password: 'test123',
                 }}
-                validationSchema={validationSchema}
-                onSubmit={userLogIn}>
-                {({errors, touched}) => (
+                validationSchema={validationSchemaSignIn}
+                onSubmit={(values)=>userSignIn(values)}>
+                {({errors, touched, handleChange}) => (
                     <Form className={classes.formContainer}>
                         <h1 style={{color: "black"}}>Sign In</h1>
                         <div className={classes.inputContainer}>
@@ -49,7 +56,8 @@ const SignIn = () => {
                                 className={classNames(classes.field, {[classes.errorField]: errors.login && touched.login})}
                                 id="login"
                                 name="login"
-                                placeholder="Login"/>
+                                placeholder="Login"
+                                onChange={handleChange}/>
                         </div>
                         <div className={classes.tooltip}>
                             {errors.login && touched.login && (
@@ -63,6 +71,7 @@ const SignIn = () => {
                                 name="password"
                                 type="password"
                                 placeholder="Password"
+                                onChange={handleChange}
                             />
                         </div>
                         <div className={classes.tooltip}>
@@ -70,7 +79,7 @@ const SignIn = () => {
                                 <div className={classes.errorLabel}>{errors.password}</div>)}
                         </div>
                         <button className={classes.submitButton} type="submit">Sign In</button>
-                        <button className={cl.buttonSignUp} onClick={() => {
+                        <button className={cl.buttonSignUp} type="button" onClick={() => {
                             dispatch({type: MODAL_CONTROLLER, payload: {signInModal: false, signUpModal: true}})
                         }}>
                             Sign Up

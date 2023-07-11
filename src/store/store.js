@@ -7,11 +7,19 @@ const initialState = {
         preferredTimezone: '',
     },
     user:null,
+    users:null,
     userSession:null,
     signInModal: false,
     signUpModal: false,
     sessions: null,
-    isLoading: false,
+    isLoadingExistingSessions: false,
+    isLoadingUsers: false,
+    isLoadingSignUp: false,
+    isLoadingSignIn: false,
+    errorsExistingSessions:null,
+    errorsUsers:null,
+    errorsSignUp:null,
+    errorsSignIn:null,
 };
 
 export default initialState;

@@ -1,5 +1,6 @@
 import * as ACTIONS from "./actions";
 
+
 export function reducer(state, action) {
     switch (action.type) {
         case ACTIONS.SET_SIGN_UP:
@@ -8,6 +9,12 @@ export function reducer(state, action) {
             return {
                 ...state,
                 user: action.payload,
+                error: null
+            };
+        case ACTIONS.SET_USERS:
+            return {
+                ...state,
+                users: action.payload,
                 error: null
             };
         case ACTIONS.SET_USER_SESSION:
@@ -55,10 +62,45 @@ export function reducer(state, action) {
                 sessions:action.payload
             }
         }
-        case ACTIONS.SET_IS_LOADING:
+        case ACTIONS.SET_IS_LOADING_EXISTING_SESSIONS:
             return {
                 ...state,
-                isLoading: action.payload
+                isLoadingExistingSessions: action.payload
+            }
+        case ACTIONS.SET_IS_LOADING_USERS:
+            return {
+                ...state,
+                isLoadingUsers: action.payload
+            }
+        case ACTIONS.SET_IS_LOADING_SIGN_UP:
+            return {
+                ...state,
+                isLoadingSignUp: action.payload
+            }
+        case ACTIONS.SET_IS_LOADING_SIGN_IN:
+            return {
+                ...state,
+                isLoadingSignIn: action.payload
+            }
+        case ACTIONS.SET_ERRORS_EXISTING_SESSIONS:
+            return {
+                ...state,
+                errorsExistingSessions: action.payload
+            }
+        case ACTIONS.SET_ERRORS_USERS:
+            return {
+                ...state,
+                errorsUsers: action.payload
+            }
+        case ACTIONS.SET_ERRORS_SIGN_UP:
+            return {
+                ...state,
+                errorsSignUp: action.payload
+            }
+        case ACTIONS.SET_ERRORS_SIGN_IN:
+            return {
+                ...state,
+                errorsSignIn: action.payload
             }
         default:
             return state;
